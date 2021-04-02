@@ -1,10 +1,12 @@
 
 package clase1conexionbd.controlador;
 
+
 import clase1conexionbd.Clase1ConexionBD;
-import clase1conexionbd.Inventario;
+import clase1conexionbd.Ventas;
 import clase1conexionbd.Proveedores;
 import java.sql.Connection;
+import static java.sql.JDBCType.NULL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,8 +16,8 @@ import java.util.List;
 
 public class InventarioBD {
 
-    public boolean registrarProducto(Inventario inventario) {
-        boolean registrar = false;
+    public boolean registrarProducto(Ventas inventario) {
+        boolean registrar = false; 
         //INTEFAZ DE ACCESO A LA BASE DE DATOS
         Statement stm = null;
         //CONEXION CON LA BASE DE DATOS
@@ -43,7 +45,7 @@ public class InventarioBD {
 
     }
 
-    public boolean editarInventario(Inventario inventario) {
+    public boolean editarInventario(Ventas inventario) {
         System.out.println("ACTUALIZAR" + inventario);
         //RETORNO DEL METODO CUANDO SE REALICE LA ACTUALIZACION
         boolean editar = false;
@@ -74,7 +76,7 @@ public class InventarioBD {
         return editar;
     }
 
-    public boolean eliminarInventario(Inventario inventario) {
+    public boolean eliminarInventario(Ventas inventario) {
         boolean eliminar = false;
         Statement stm = null;
         Connection con = null;
@@ -91,7 +93,7 @@ public class InventarioBD {
         return eliminar;
     }
 
-    public List<Inventario> obtenerProductosInventario() {
+    public List<Ventas> obtenerProductosInventario() {
         Connection con = null;
         Statement stm = null;
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
@@ -99,14 +101,14 @@ public class InventarioBD {
 
         String sql = "SELECT * FROM ejercicio.inventario;";
 
-        List<Inventario> ListaInventarios = new ArrayList<Inventario>();
+        List<Ventas> ListaInventarios = new ArrayList<Ventas>();
 
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
             stm = con.createStatement();
             rs = stm.executeQuery(sql);
             while (rs.next()) {
-                Inventario c = new Inventario();
+                Ventas c = new Ventas();
                 c.setIdInventario(rs.getInt(1));
                 c.setCodProducto(rs.getString(2));
                 c.setCantProductos(rs.getString(3));
@@ -132,20 +134,20 @@ public class InventarioBD {
         return ListaInventarios;
     }
 
-    public List<Inventario> obtenerProductosInventarioCodigo(String codigo) {
+    public List<Ventas> obtenerProductosInventarioCodigo(String codigo) {
         System.out.println("codigo" + codigo);
         Connection con = null;
         Statement stm = null;
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
         String sql = "SELECT * FROM ejercicio.inventario WHERE codigo_pro = '" + codigo + "';";
-        List<Inventario> listaInventarioCodigo = new ArrayList<Inventario>();
+        List<Ventas> listaInventarioCodigo = new ArrayList<Ventas>();
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
             stm = con.createStatement();
             rs = stm.executeQuery(sql);
             while (rs.next()) {
-                Inventario c = new Inventario();
+                Ventas c = new Ventas();
                 c.setIdInventario(rs.getInt(1));
                 c.setCodProducto(rs.getString(2));
                 c.setCantProductos(rs.getString(3));
@@ -169,21 +171,60 @@ public class InventarioBD {
         }
         return listaInventarioCodigo;
     }
+     public List<Ventas> obtenerProductosInventarioID(String idInventario, int Cantidad) {
+       
+        Connection con = null;
+        Statement stm = null;
+        //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
+        ResultSet rs = null;
+        String sql = "SELECT * FROM ejercicio.inventario WHERE idInventario = '" + idInventario + "';";
+        List<Ventas> listaInventarioIdInventario = new ArrayList<Ventas>();
+        try {
+            con = new Clase1ConexionBD().conectarBaseDatos();
+            stm = con.createStatement();
+            rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                Ventas c = new Ventas();
+                c.setIdInventario(rs.getInt(1));
+                c.setCodProducto(rs.getString(2));
+                c.setCantProductos(rs.getString(3));
+                c.setDescripcion(rs.getString(4));
+                c.setPrecioCompraSinIVA(rs.getDouble(5));
+                c.setPrecioCompraConIVA(rs.getDouble(6));
+                c.setPrecioMayorista(rs.getDouble(7));
+                c.setPrecioClienteFjo(rs.getDouble(8));
+                c.setPrecioClienteNormal(rs.getDouble(9));
+                c.setFechaCaducidad(rs.getDate(10));
+                c.setFechaRegistro(rs.getDate(11));
+                c.setFechaActualizacion(rs.getDate(12));
+                c.setCantidad(Cantidad);
+                listaInventarioIdInventario.add(c);
+            }
+            stm.close();
+            rs.close();
+            con.close();
 
-    public List<Inventario> obtenerProductosInventarioDescripcion(String descripcion) {
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+        return listaInventarioIdInventario;
+        
+    }
+
+    public List<Ventas> obtenerProductosInventarioDescripcion(String descripcion) {
         System.out.println("descripcion" + descripcion);
         Connection con = null;
         Statement stm = null;
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
         String sql = "SELECT * FROM ejercicio.inventario WHERE descripcion like \"%" + descripcion + "%\"";
-        List<Inventario> listaInventarioDescripcion = new ArrayList<Inventario>();
+        List<Ventas> listaInventarioDescripcion = new ArrayList<Ventas>();
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
             stm = con.createStatement();
             rs = stm.executeQuery(sql);
             while (rs.next()) {
-                Inventario c = new Inventario();
+                Ventas c = new Ventas();
                 c.setIdInventario(rs.getInt(1));
                 c.setCodProducto(rs.getString(2));
                 c.setCantProductos(rs.getString(3));
@@ -207,5 +248,6 @@ public class InventarioBD {
         }
         return listaInventarioDescripcion;
     }
+
 
 }

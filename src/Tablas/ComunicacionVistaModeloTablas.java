@@ -3,13 +3,13 @@ package Tablas;
 
 import clase1conexionbd.Persona;
 import clase1conexionbd.Proveedores;
-import clase1conexionbd.Inventario;
+import clase1conexionbd.Ventas;
 
 
 
 public interface ComunicacionVistaModeloTablas {
     void clickPersona(Persona p);
-    void clickInventario(Inventario p);
+    void clickInventario(Ventas p);
     void clickProveedores(Proveedores p);
     
 }

@@ -2,7 +2,7 @@
 package Tablas;
 
 import Vistas.GestionContable;
-import clase1conexionbd.Inventario;
+import clase1conexionbd.Ventas;
 import Tablas.ModelTableInventario;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -14,10 +14,10 @@ public class ModelTableInventario extends AbstractTableModel {
     //CREACION DE LOS NOMBRES DE LAS COLUMNAS USANDO ARREGLO
     private String[] m_colNames = {"Código Produc.","Cant.Productos","Descripción","Precio-IVA","Precio+IVA","Precio Mayorista",
     "Precio Cli.fijo","Precio Cli.normal","Fecha caducidad","Fecha registro","Fecha actualizada"};
-    private List<Inventario> inventarios;
+    private List<Ventas> inventarios;
     private GestionContable gContable;
 
-    public ModelTableInventario(List<Inventario> inventarios, GestionContable gContable) {
+    public ModelTableInventario(List<Ventas> inventarios, GestionContable gContable) {
         this.inventarios = inventarios;
         this.gContable = gContable;
     }
@@ -36,7 +36,7 @@ public class ModelTableInventario extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Inventario inventario = inventarios.get(rowIndex);
+        Ventas inventario = inventarios.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return inventario.getCodProducto();
@@ -79,11 +79,11 @@ public class ModelTableInventario extends AbstractTableModel {
         return super.isCellEditable(rowIndex, columnIndex); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<Inventario> getInventarios() {
+    public List<Ventas> getInventarios() {
         return inventarios;
     }
 
-    public void setInventarios(List<Inventario> inventarios) {
+    public void setInventarios(List<Ventas> inventarios) {
         this.inventarios = inventarios;
     }
 

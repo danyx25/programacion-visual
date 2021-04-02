@@ -1,10 +1,8 @@
-
 package clase1conexionbd;
 
 import java.sql.Date;
 
-
-public class Inventario {
+public class Ventas {
 
     private int idInventario;
     private String codProducto;
@@ -18,12 +16,13 @@ public class Inventario {
     private Date fechaCaducidad;
     private Date fechaRegistro;
     private Date fechaActualizacion;
+    private int Cantidad;
 
-    public Inventario() {
+    public Ventas() {
 
     }
 
-    public Inventario(int idInventario, String codProducto, String cantProductos, String descripcion, double precioCompraSinIVA, double precioCompraConIVA, double precioMayorista, double precioClienteFjo, double precioClienteNormal, Date fechaCaducidad, Date fechaRegistro, Date fechaActualizacion) {
+    public Ventas(int idInventario, String codProducto, String cantProductos, String descripcion, double precioCompraSinIVA, double precioCompraConIVA, double precioMayorista, double precioClienteFjo, double precioClienteNormal, Date fechaCaducidad, Date fechaRegistro, Date fechaActualizacion, int Cantidad) {
         this.idInventario = idInventario;
         this.codProducto = codProducto;
         this.cantProductos = cantProductos;
@@ -36,6 +35,7 @@ public class Inventario {
         this.fechaCaducidad = fechaCaducidad;
         this.fechaRegistro = fechaRegistro;
         this.fechaActualizacion = fechaActualizacion;
+        this.Cantidad = Cantidad;
     }
 
     public int getIdInventario() {
@@ -134,8 +134,17 @@ public class Inventario {
         this.fechaActualizacion = fechaActualizacion;
     }
 
+    public int getCantidad() {
+        return Cantidad;
+    }
+
+    public void setCantidad(int Cantidad) {
+        this.Cantidad = Cantidad;
+    }
+
     @Override
     public String toString() {
-        return "Inventario{" + "idInventario=" + idInventario + ", codProducto=" + codProducto + ", cantProductos=" + cantProductos + ", descripcion=" + descripcion + ", precioCompraSinIVA=" + precioCompraSinIVA + ", precioCompraConIVA=" + precioCompraConIVA + ", precioMayorista=" + precioMayorista + ", precioClienteFjo=" + precioClienteFjo + ", precioClienteNormal=" + precioClienteNormal + ", fechaCaducidad=" + fechaCaducidad + ", fechaRegistro=" + fechaRegistro + ", fechaActualizacion=" + fechaActualizacion + '}';
+        return "Ventas{" + "idInventario=" + idInventario + ", codProducto=" + codProducto + ", cantProductos=" + cantProductos + ", descripcion=" + descripcion + ", precioCompraSinIVA=" + precioCompraSinIVA + ", precioCompraConIVA=" + precioCompraConIVA + ", precioMayorista=" + precioMayorista + ", precioClienteFjo=" + precioClienteFjo + ", precioClienteNormal=" + precioClienteNormal + ", fechaCaducidad=" + fechaCaducidad + ", fechaRegistro=" + fechaRegistro + ", fechaActualizacion=" + fechaActualizacion + ", Cantidad=" + Cantidad + '}';
     }
+
 }

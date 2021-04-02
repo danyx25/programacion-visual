@@ -2,7 +2,7 @@
 package Vistas;
 
 import Utilidad.Utilidades;
-import clase1conexionbd.Inventario;
+import clase1conexionbd.Ventas;
 import clase1conexionbd.Persona;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -68,8 +68,8 @@ public class GestionInventario {
 
     
 
-    public Inventario guardarEditarInventario() {
-        Inventario inventario = new Inventario();
+    public Ventas guardarEditarInventario() {
+        Ventas inventario = new Ventas();
         inventario.setCodProducto(txtCodProductoInventario.getText());
         inventario.setDescripcion(txtDescripcionInventario.getText());
         inventario.setCantProductos(txtCantidadProductosInventario.getText());
