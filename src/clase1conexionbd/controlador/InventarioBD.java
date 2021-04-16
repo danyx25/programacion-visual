@@ -4,9 +4,7 @@ package clase1conexionbd.controlador;
 
 import clase1conexionbd.Clase1ConexionBD;
 import clase1conexionbd.Ventas;
-import clase1conexionbd.Proveedores;
 import java.sql.Connection;
-import static java.sql.JDBCType.NULL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,9 +21,9 @@ public class InventarioBD {
         //CONEXION CON LA BASE DE DATOS
         Connection con = null;
         //SENTENCIA SQL
-        String sql = "INSERT INTO `ejercicio`.`inventario` (`cod_producto`, `can_producto`, `descripcion`, `precio_compra_sin_iva`, "
-                + "`precio_compra_con_iva`, `precio_mayorista`, `precio_cliente_fijo`, `precio_cliente_normal`, `fecha_caducidad`, "
-                + "`fecha_registro`, `fecha_actualizacion`) VALUES ('" + inventario.getCodProducto() + "', '" + inventario.getCantProductos() + "',"
+        String sql = "INSERT INTO `ejercicio`.`inventario` (`codProducto`, `cantProductos`, `descripcion`, `precioCompraSinIVA`, "
+                + "`precioCompraConIVA`, `precioMayorista`, `precioClienteFjo`, `precioClienteNormal`, `fechaCaducidad`, "
+                + "`fechaRegistro`, `fechaActualizacion`) VALUES ('" + inventario.getCodProducto() + "', '" + inventario.getCantProductos() + "',"
                 + " '" + inventario.getDescripcion() + "', '" + inventario.getPrecioCompraSinIVA() + "', '" + inventario.getPrecioCompraConIVA() + "',"
                 + " '" + inventario.getPrecioMayorista() + "', '" + inventario.getPrecioClienteFjo() + "', '" + inventario.getPrecioClienteNormal() + "', "
                 + "'" + inventario.getFechaCaducidad() + "', '" + inventario.getFechaRegistro() + "', '" + inventario.getFechaActualizacion() + "');";
@@ -54,13 +52,12 @@ public class InventarioBD {
         //CONEXION CON LA BASE DE DATOS 
         Connection con = null;
         //CONTATENANDO LA OPCION DE ACTUALIZACION
-        String sql = "UPDATE `ejercicio`.`inventario` SET `cod_producto` = '" + inventario.getCodProducto() + "', "
-                + "`can_producto` = '" + inventario.getCantProductos() + "', `descripcion` = '" + inventario.getDescripcion() + "', "
-                + "`precio_compra_sin_iva` = '" + inventario.getPrecioCompraSinIVA() + "', `precio_compra_con_iva` = '" + inventario.getPrecioCompraConIVA() + "',"
-                + " `precio_mayorista` = '" + inventario.getPrecioMayorista() + "', `precio_cliente_fijo` = '" + inventario.getPrecioClienteFjo() + "', "
-                + "`precio_cliente_normal` = " + inventario.getPrecioClienteNormal() + "', `fecha_caducidad` = '" + inventario.getFechaCaducidad() + "',"
-                + " `fecha_registro` = '" + inventario.getFechaRegistro() + "', `fecha_actualizacion` = '" + inventario.getFechaActualizacion() + ""
-                + "' WHERE (`idinventario` = '" + inventario.getIdInventario() + "');";
+        String sql = "UPDATE `ejercicio`.`inventario` SET `codProducto` = '" + inventario.getCodProducto() + "', `cantProductos` = '" + inventario.getCantProductos() + "', "
+                + "`descripcion` = '" + inventario.getDescripcion() + "', `precioCompraSinIVA` = '" + inventario.getPrecioCompraSinIVA() + "', `precioCompraConIVA` = '" + inventario.getPrecioCompraConIVA() + "',"
+                + " `precioMayorista` = '" + inventario.getPrecioMayorista() + "', `precioClienteFjo` = '" + inventario.getPrecioClienteFjo() + "', `precioClienteNormal` = '" + inventario.getPrecioClienteNormal() + "',"
+                + " `fechaCaducidad` = '" + inventario.getFechaCaducidad() +"', `fechaRegistro` = '" + inventario.getFechaRegistro() + "',"
+                + " `fechaActualizacion` = '" + inventario.getFechaActualizacion() + "' WHERE (`idInventario` = '" + inventario.getIdInventario() + "');";
+
         try {
             Clase1ConexionBD conexion = new Clase1ConexionBD();
             con = conexion.conectarBaseDatos();
@@ -80,7 +77,7 @@ public class InventarioBD {
         boolean eliminar = false;
         Statement stm = null;
         Connection con = null;
-        String sql = "DELETE FROM `ejercicio`.`inventario` WHERE (`idinventario` = '" + inventario.getIdInventario() + "');";
+        String sql = "DELETE FROM `ejercicio`.`inventario` WHERE (`idInventario` = '" + inventario.getIdInventario() + "');";
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
             stm = con.createStatement();
@@ -140,7 +137,7 @@ public class InventarioBD {
         Statement stm = null;
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
-        String sql = "SELECT * FROM ejercicio.inventario WHERE codigo_pro = '" + codigo + "';";
+        String sql = "SELECT * FROM ejercicio.inventario WHERE codProducto = '" + codigo + "';";
         List<Ventas> listaInventarioCodigo = new ArrayList<Ventas>();
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();

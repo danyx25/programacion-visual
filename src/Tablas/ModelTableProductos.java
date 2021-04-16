@@ -57,6 +57,11 @@ public class ModelTableProductos extends AbstractTableModel{
      public List<Ventas> getProductos() {
         return productos;
     }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return super.isCellEditable(rowIndex, columnIndex); //To change body of generated methods, choose Tools | Templates.
+    }
   
   public void setProductos(List<Ventas> productos){
       this.productos=productos;

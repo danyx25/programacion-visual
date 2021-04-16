@@ -5,10 +5,7 @@
  */
 package imagenes;
 
-/**
- *
- * @author joang
- */
+
 public class Factura extends javax.swing.JDialog {
 
     /**

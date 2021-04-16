@@ -78,9 +78,10 @@ public class ModelTableInventario extends AbstractTableModel {
         gContable.clickInventario(inventarios.get(rowIndex));
         return super.isCellEditable(rowIndex, columnIndex); //To change body of generated methods, choose Tools | Templates.
     }
+    
 
     public List<Ventas> getInventarios() {
-        return inventarios;
+        return inventarios; 
     }
 
     public void setInventarios(List<Ventas> inventarios) {

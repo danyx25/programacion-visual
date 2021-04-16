@@ -3,6 +3,7 @@ package Vistas;
 
 import Utilidad.Utilidades;
 import clase1conexionbd.Persona;
+import com.toedter.calendar.JDateChooser;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import javax.swing.JComboBox;
@@ -21,6 +22,7 @@ public class GestionPersona {
     private Utilidades utilidades;
     private JFrame frameGestionContable;
     private JComboBox jcbGenero;
+    private JDateChooser JDateFechaNacimiento;
 
     public GestionPersona(JTextField txtCedula, JTextField txtNombres, JTextField txtApellidos, JTextField txtDireccion, JTextField txtCorreo, JTextField txtTelefono, Utilidades utilidades, JFrame frameGestionContable, JComboBox jcbGenero) {
         this.txtCedula = txtCedula;
@@ -32,6 +34,14 @@ public class GestionPersona {
         this.utilidades = utilidades;
         this.frameGestionContable = frameGestionContable;
         this.jcbGenero = jcbGenero;
+    }
+
+    public JDateChooser getJDateFechaNacimiento() {
+        return JDateFechaNacimiento;
+    }
+
+    public void setJDateFechaNacimiento(JDateChooser JDateFechaNacimiento) {
+        this.JDateFechaNacimiento = JDateFechaNacimiento;
     }
 
     public JTextField getTxtCedula() {
@@ -116,10 +126,11 @@ public class GestionPersona {
         txtTelefono.setText(" ");
         txtCedula.requestFocus();
         jcbGenero.setSelectedItem(0);
+        
 
     }
 
-    public Persona guardarEditar(boolean isEditar) {
+    public Persona guardarEditar() {
         if (txtCedula.getText().isEmpty()) {
             JOptionPane.showMessageDialog(frameGestionContable, "EL CAMPO CEDULA ESTA VACIO", "ERROR", JOptionPane.ERROR_MESSAGE);
             txtCedula.requestFocus();//UBICAR EL CURSOR ENFOCAR EN UN CAMPO
@@ -175,11 +186,8 @@ public class GestionPersona {
         persona.setCorreo(txtCorreo.getText());
         persona.setTelefono(txtTelefono.getText());
         persona.setGenero(jcbGenero.getSelectedIndex());
-//        if (isEditar) {
-//                  persona.setFechaActualizacion(new Date());
-//        } else {
-//            persona.setFechaRegistro(new Date());
-//        }
+        
+        
         System.out.println(persona.toString());
         return persona;
 

@@ -23,9 +23,9 @@ public class PersonaBD {
         Connection con = null;
         String sql;
         if (persona.getFechaNacimiento() == null) {
-            sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', '" + persona.getFechaRegistro() + "', '" + persona.getGenero() + "');";
+            sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombre`, `apellido`, `direccion`, `correo`, `telefono`, `fechaRegistro`, `genero`) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', '" + persona.getFechaRegistro() + "', '" + persona.getGenero() + "');";
         }else{
-        sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`, `fecha_nacimiento` ) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', '" + persona.getFechaRegistro() + "', '" + persona.getGenero() + "', '" + persona.getFechaNacimiento()+ "');";
+        sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombre`, `apellido`, `direccion`, `correo`, `telefono`,`genero`, `fechaNacimiento` ) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', " + persona.getGenero() + ", '" + persona.getFechaNacimiento()+ "');";
         }
 
         //SENTENCIA SQL
@@ -54,7 +54,7 @@ public class PersonaBD {
         //CONEXION CON LA BASE DE DATOS 
         Connection con = null;
         //CONTATENANDO LA OPCION DE ACTUALIZACION
-        String sql = "UPDATE `ejercicio`.`persona` SET `cedula` = '" + persona.getCedula() + "', `nombres` = '" + persona.getNombre() + "', `apellidos` = '" + persona.getApellido() + "', `direccion` = '" + persona.getDireccion() + "', `correo` = '" + persona.getCorreo() + "', `telefono` = '" + persona.getTelefono() + "', `fecha_registro` = '" + persona.getFechaRegistro() + "', `genero` = '" + persona.getGenero() + "' WHERE (`idpersona` = '" + persona.getIdPersona() + "');";
+        String sql = "UPDATE `ejercicio`.`persona` SET `cedula` = '" + persona.getCedula() + "', `nombre` = '" + persona.getNombre() + "', `apellido` = '" + persona.getApellido() + "', `direccion` = '" + persona.getDireccion() + "', `correo` = '" + persona.getCorreo() + "', `telefono` = '" + persona.getTelefono() + "', `genero` = '" + persona.getGenero() + "' , `fechaNacimiento` = '" + persona.getFechaNacimiento() + "' WHERE (`idpersona` = '" + persona.getIdPersona() + "');";
         try {
             Clase1ConexionBD conexion = new Clase1ConexionBD();
             con = conexion.conectarBaseDatos();
@@ -112,7 +112,7 @@ public class PersonaBD {
                 c.setTelefono(rs.getString(7));
                 c.setFechaRegistro(rs.getDate(8));
                 c.setGenero(rs.getInt(9));
-                //c.setFechaActualizacion(rs.getDate(10));
+                c.setFechaNacimiento(rs.getDate(10));
                 listaPersona.add(c);
             }
             stm.close();
